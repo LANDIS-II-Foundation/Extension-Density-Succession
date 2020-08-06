@@ -17,6 +17,7 @@ namespace Landis.Library.DensityCohorts
     {
 
         private ISpecies species;
+        private ISpeciesDensity speciesDensity;
         private CohortData data;
         private ushort age;
         private int treenumber;
@@ -33,7 +34,15 @@ namespace Landis.Library.DensityCohorts
                 return species;
             }
         }
+        //---------------------------------------------------------------------
 
+        public ISpeciesDensity DensitySpecies
+        {
+            get
+            {
+                return speciesDensity;
+            }
+        }
         //---------------------------------------------------------------------
 
         public ushort Age
@@ -149,7 +158,8 @@ namespace Landis.Library.DensityCohorts
 
         public Cohort(ISpeciesDensity species, ushort year_of_birth, string SiteName) // : base(species, 0, (int)(1F / species.DNSC * (ushort)species.InitialNSC))
         {
-            this.species = species;
+            this.species = (ISpecies) species;
+            this.speciesDensity = species;
             age = 1;
 
             //FIXME - initialize the number of trees in a new cohort
@@ -187,7 +197,8 @@ namespace Landis.Library.DensityCohorts
                       int   treenumber,
                       IEcoregion ecoregion)
         {
-            this.species = species;
+            this.species = (ISpecies) species;
+            this.speciesDensity = SpeciesParameters.SpeciesDensity.AllSpecies[species.Index];
             this.data.Age = age;
             this.data.Treenumber = treenumber;
             this.data.Diameter = 0;
@@ -213,8 +224,8 @@ namespace Landis.Library.DensityCohorts
                 }
                 this.data.Diameter = diameter;
                 //FIXME ---- JSF
-                ISpeciesDensity speciesdensity = SpeciesParameters.SpeciesDensity.AllSpecies[species.Index];
-                double biomass = Math.Exp(SpeciesParameters.biomass_util.GetBiomassData(speciesdensity.BiomassClass, 1) + SpeciesParameters.biomass_util.GetBiomassData(speciesdensity.BiomassClass, 2) * Math.Log(diameter)) * data.Treenumber / 1000.00; // Mg/cell
+                //ISpeciesDensity speciesdensity = SpeciesParameters.SpeciesDensity.AllSpecies[species.Index];
+                double biomass = Math.Exp(SpeciesParameters.biomass_util.GetBiomassData(this.speciesDensity.BiomassClass, 1) + SpeciesParameters.biomass_util.GetBiomassData(this.speciesDensity.BiomassClass, 2) * Math.Log(diameter)) * data.Treenumber / 1000.00; // Mg/cell
                 int biomass_int = System.Convert.ToInt32(biomass);
                 double biomass_gm2 = biomass * 1000 * 1000 / (EcoregionData.ModelCore.CellLength * EcoregionData.ModelCore.CellLength);
                 int biomass_gm2_int = System.Convert.ToInt32(biomass_gm2);
@@ -227,7 +238,8 @@ namespace Landis.Library.DensityCohorts
         public Cohort(ISpecies   species,
                       CohortData cohortData)
         {
-            this.species = species;
+            this.species = (ISpecies) species;
+            this.speciesDensity = SpeciesParameters.SpeciesDensity.AllSpecies[species.Index];
             this.data = cohortData;
         }
 
@@ -235,7 +247,8 @@ namespace Landis.Library.DensityCohorts
 
         public Cohort(Cohort cohort) // : base(cohort.species, new Landis.Library.BiomassCohorts.CohortData(cohort.age, cohort.Biomass))
         {
-            this.species = cohort.species;
+            this.species = (ISpecies) cohort.species;
+            this.speciesDensity = SpeciesParameters.SpeciesDensity.AllSpecies[this.species.Index];
             this.data.Age = cohort.age;
             this.data.Treenumber = cohort.treenumber;
             this.diameter = cohort.diameter;
@@ -244,10 +257,11 @@ namespace Landis.Library.DensityCohorts
 
         //---------------------------------------------------------------------
 
-        public Cohort(ISpeciesDensity species, ushort age, int treenumber, string SiteName, ushort firstYear, IEcoregion siteEcoregion)
+        public Cohort(ISpecies species, ushort age, int treenumber, string SiteName, ushort firstYear, IEcoregion siteEcoregion)
         {
             //InitializeSubLayers();
-            this.species = species;
+            this.species = (ISpecies) species;
+            this.speciesDensity = SpeciesParameters.SpeciesDensity.AllSpecies[species.Index];
             ecoregion = siteEcoregion;
             this.data.Age = age;
             this.data.Treenumber = treenumber;
