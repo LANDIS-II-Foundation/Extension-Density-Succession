@@ -11,6 +11,7 @@
     <RepositoryUrl>https://github.com/LANDIS-II-Foundation/Extension-Density-Succession</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <AssemblyName>Landis.Extension.Succession.Density-v1</AssemblyName>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

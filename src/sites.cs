@@ -1842,6 +1842,8 @@ namespace Landis.Extension.Succession.Density
             {
                 speciesattr local_speciesattr = siteptr.specAtt(i);
 
+                //Console.WriteLine("Species {0} - MaxAreaOfSTDTree {1}", i, local_speciesattr.MaxAreaOfSTDTree);
+
                 int site_spec_i_type = local_speciesattr.SpType;
 
                 if (site_spec_i_type >= 0)
@@ -2094,7 +2096,7 @@ namespace Landis.Extension.Succession.Density
 
             uint site_species_num = siteptr.Num_Species; //number of species
 
-
+            //Console.WriteLine("StartAge = {0}", StartAge);
             //kill all tree, else kill youngest tree
             if (StartAge == 0)
             {
