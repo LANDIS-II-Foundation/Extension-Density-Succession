@@ -1,0 +1,34 @@
+LandisData  "Biomass Harvest"
+
+
+Timestep    10
+
+ManagementAreas "ecoregion.img"
+
+Stands      "ecoregion.img"
+
+>> -----------------------------------------
+>> PRESCRIPTIONS
+
+Prescription TestDiameterRemoval
+    StandRanking 	BasalAreaRank
+    SiteSelection 	Complete
+    CohortsRemoved	DiameterBasalRemoval
+  querrubr	10-100  (50%)
+
+
+>>-----------------------------------------------------------------
+>> PRESCRIPTION IMPLEMENTATION 
+
+    HarvestImplementations
+>>  Mgmt Area   Prescription    		Harvest Area    Begin Time  End Time
+>>  ---------   ------------    		------------    ----------  --------
+	1	TestDiameterRemoval			100%
+	
+>>-----------------------------------------------------------------
+>> OUTPUTS
+
+PrescriptionMaps    harvest/prescripts-{timestep}.img
+BiomassMaps         harvest/biomass-removed-{timestep}.img
+EventLog            biomass-harvest-event-test-log.csv
+SummaryLog	    harvest/summary-log.csv
