@@ -275,6 +275,8 @@ namespace Landis.Extension.Succession.Density
 
             DynamicEcoregions.ChangeDynamicParameters(0);  // Year 0
 
+            Landis.Library.DensityCohorts.MetadataHandler.InitializeMetadata(Timestep, "Density_mortality_output.csv", true);
+
             Landis.Library.DensityCohorts.Cohorts.Initialize(Timestep);
             // This creates the cohorts - FIXME
             SiteCohorts.Initialize();

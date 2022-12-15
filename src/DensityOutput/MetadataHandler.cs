@@ -13,7 +13,7 @@ namespace Landis.Extension.Output.Density
     public static class MetadataHandler
     {
         public static ExtensionMetadata Extension { get; set; }
-        
+
         public static void InitializeMetadata(int Timestep, string summaryLogName, bool makeTable)
         {
 
@@ -27,7 +27,7 @@ namespace Landis.Extension.Output.Density
             Extension = new ExtensionMetadata(PlugIn.ModelCore)
             {
                 Name = PlugIn.ExtensionName,
-                TimeInterval = Timestep, 
+                TimeInterval = Timestep,
                 ScenarioReplicationMetadata = scenRep
             };
 
@@ -38,7 +38,9 @@ namespace Landis.Extension.Output.Density
             if (makeTable)
             {
                 CreateDirectory(summaryLogName);
+                CreateDirectory("Density_cohort_log.csv");
                 PlugIn.summaryLog = new MetadataTable<SummaryLog>(summaryLogName);
+                PlugIn.summaryLogCohort = new MetadataTable<SummaryLogCohort>("Density_cohort_log.csv");
 
                 PlugIn.ModelCore.UI.WriteLine("   Generating summary table...");
                 OutputMetadata tblOut_summary = new OutputMetadata()
@@ -58,7 +60,7 @@ namespace Landis.Extension.Output.Density
             //---------------------------------------
 
 
-            foreach(ISpecies species in PlugIn.speciesToMap)
+            foreach (ISpecies species in PlugIn.speciesToMap)
             {
                 OutputMetadata treeOut_Species = new OutputMetadata()
                 {

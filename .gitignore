@@ -214,5 +214,7 @@ FakesAssemblies/
 /test/density/Landis-log.txt
 /test/density/Metadata/Output Biomass
 /test/density/outputs/
+/test/density/output/
 /test/density/demographic-seeding/
 /src/*.sln
+/test/LargeLandscape

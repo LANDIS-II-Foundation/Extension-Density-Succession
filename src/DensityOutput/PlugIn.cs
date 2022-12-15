@@ -3,7 +3,7 @@
 using Landis.Core;
 using Landis.Utilities;
 using Landis.Library.Succession;
-using Landis.Library.BiomassCohorts;
+//using Landis.Library.BiomassCohorts;
 using Landis.Library.DensityCohorts;
 using Landis.SpatialModeling;
 using Landis.Library.Biomass;
@@ -31,6 +31,7 @@ namespace Landis.Extension.Output.Density
         private static ICore modelCore;
         private bool makeTable;
         public static MetadataTable<SummaryLog> summaryLog;
+        public static MetadataTable<SummaryLogCohort> summaryLogCohort;
 
         //---------------------------------------------------------------------
 
@@ -82,15 +83,16 @@ namespace Landis.Extension.Output.Density
 
         public override void Run()
         {
-            WriteMapForAllSpecies();
+            //WriteMapForAllSpecies();
 
             if (makeTable)
-                WriteLogFile();
+                WriteCohortLogFile();
+            //WriteLogFile();
 
             if (selectedSpecies != null)
             {
-                WriteSpeciesMaps();
-                
+                //WriteSpeciesMaps();
+
             }
         }
 
@@ -98,7 +100,8 @@ namespace Landis.Extension.Output.Density
 
         private void WriteSpeciesMaps()
         {
-            foreach (ISpecies species in selectedSpecies) {
+            foreach (ISpecies species in selectedSpecies)
+            {
                 string treepath = MakeSpeciesTreenumberMapName(species.Name);
                 string basalpath = MakeSpeciesBasalMapName(species.Name);
                 PlugIn.ModelCore.UI.WriteLine("   Writing {0} maps ...", species.Name);
@@ -194,12 +197,46 @@ namespace Landis.Extension.Output.Density
 
         //---------------------------------------------------------------------
 
+        private void WriteCohortLogFile()
+        {
+            foreach (ActiveSite site in ModelCore.Landscape)
+            {
+                IEcoregion ecoregion = ModelCore.Ecoregion[site];
+
+
+                foreach (ISpeciesCohorts speciesCohorts in SiteVars.Cohorts[site])
+                {
+                    foreach (Cohort cohort in speciesCohorts)
+                    {
+                        summaryLogCohort.Clear();
+
+                        SummaryLogCohort slc = new SummaryLogCohort();
+
+                        slc.Time = modelCore.CurrentTime;
+                        slc.SiteIndex = site.DataIndex;
+                        slc.EcoName = ecoregion.Name;
+                        slc.Species = cohort.Species.Name;
+                        slc.Age = cohort.Age;
+                        slc.TreeNumber = cohort.Treenumber;
+                        slc.Diameter = Math.Round(cohort.Diameter, 1);
+                        slc.Biomass = cohort.Biomass;
+
+                        summaryLogCohort.AddObject(slc);
+                        summaryLogCohort.WriteToFile();
+                    }
+                }
+
+
+
+            }
+        }
+        //---------------------------------------------------------------------
 
         private void WriteLogFile()
         {
 
 
-            double[,,] allSppEcos = new double[ModelCore.Ecoregions.Count, ModelCore.Species.Count,2];
+            double[,,] allSppEcos = new double[ModelCore.Ecoregions.Count, ModelCore.Species.Count, 2];
 
             int[] activeSiteCount = new int[ModelCore.Ecoregions.Count];
 
@@ -254,7 +291,7 @@ namespace Landis.Extension.Output.Density
             }
         }
         //---------------------------------------------------------------------
-        private static double ComputeSpeciesBasal(Landis.Library.DensityCohorts.ISpeciesCohorts cohorts)
+        private static double ComputeSpeciesBasal(Library.Cohorts.ISpeciesCohorts<Library.DensityCohorts.ICohort> cohorts)
         {
             double local_const = 3.1415926 / (4 * 10000.00);
             double total = 0;
@@ -265,7 +302,7 @@ namespace Landis.Extension.Output.Density
 
         //---------------------------------------------------------------------
 
-        private static int ComputeSpeciesTreeNumber(Landis.Library.DensityCohorts.ISpeciesCohorts cohorts)
+        private static int ComputeSpeciesTreeNumber(Library.Cohorts.ISpeciesCohorts<Library.DensityCohorts.ICohort> cohorts)
         {
             int total = 0;
             if (cohorts != null)
@@ -279,20 +316,20 @@ namespace Landis.Extension.Output.Density
         {
             int total = 0;
             if (cohorts != null)
-                foreach (Landis.Library.DensityCohorts.ISpeciesCohorts speciesCohorts in cohorts)
+                foreach (Library.Cohorts.ISpeciesCohorts<Library.DensityCohorts.ICohort> speciesCohorts in cohorts)
                 {
                     total += ComputeSpeciesTreeNumber(speciesCohorts);
                 }
             return total;
         }
-        
+
         //---------------------------------------------------------------------
 
         private static double ComputeTotalBasal(Landis.Library.DensityCohorts.ISiteCohorts cohorts)
         {
             double total = 0;
             if (cohorts != null)
-                foreach (Landis.Library.DensityCohorts.ISpeciesCohorts speciesCohorts in cohorts)
+                foreach (Library.Cohorts.ISpeciesCohorts<Library.DensityCohorts.ICohort> speciesCohorts in cohorts)
                 {
                     total += ComputeSpeciesBasal(speciesCohorts);
                 }
