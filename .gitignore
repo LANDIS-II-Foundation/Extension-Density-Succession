@@ -216,3 +216,5 @@ FakesAssemblies/
 /test/density/outputs/
 /test/density/demographic-seeding/
 /src/*.sln
+/test/LargeLandscape
+
