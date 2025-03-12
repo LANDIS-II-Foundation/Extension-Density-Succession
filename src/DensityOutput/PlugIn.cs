@@ -101,6 +101,7 @@ namespace Landis.Extension.Output.Density
             foreach (ISpecies species in selectedSpecies) {
                 string treepath = MakeSpeciesTreenumberMapName(species.Name);
                 string basalpath = MakeSpeciesBasalMapName(species.Name);
+                string biomasspath = MakeSpeciesBiomassMapName(species.Name);
                 PlugIn.ModelCore.UI.WriteLine("   Writing {0} maps ...", species.Name);
 
                 using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(treepath, modelCore.Landscape.Dimensions))
@@ -130,6 +131,20 @@ namespace Landis.Extension.Output.Density
                         outputRaster.WriteBufferPixel();
                     }
                 }
+
+                using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(biomasspath, modelCore.Landscape.Dimensions))
+                {
+                    IntPixel pixel = outputRaster.BufferPixel;
+                    foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
+                    {
+                        if (site.IsActive)
+                            pixel.MapCode.Value = ComputeSpeciesBiomass(SiteVars.Cohorts[site][species]);
+                        else
+                            pixel.MapCode.Value = 0;
+
+                        outputRaster.WriteBufferPixel();
+                    }
+                }
             }
 
         }
@@ -140,6 +155,7 @@ namespace Landis.Extension.Output.Density
         {
             string treepath = MakeSpeciesTreenumberMapName("AllSpecies");
             string basalpath = MakeSpeciesBasalMapName("AllSpecies");
+            string biomasspath = MakeSpeciesBiomassMapName("AllSpecies");
             PlugIn.ModelCore.UI.WriteLine("   Writing all species maps ...");
             using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(treepath, modelCore.Landscape.Dimensions))
             {
@@ -168,6 +184,20 @@ namespace Landis.Extension.Output.Density
                     outputRaster.WriteBufferPixel();
                 }
             }
+
+            using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(biomasspath, modelCore.Landscape.Dimensions))
+            {
+                IntPixel pixel = outputRaster.BufferPixel;
+                foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
+                {
+                    if (site.IsActive)
+                        pixel.MapCode.Value = ComputeTotalBiomass(SiteVars.Cohorts[site]);
+                    else
+                        pixel.MapCode.Value = 0;
+
+                    outputRaster.WriteBufferPixel();
+                }
+            }
         }
 
         //---------------------------------------------------------------------
@@ -186,6 +216,17 @@ namespace Landis.Extension.Output.Density
         private string MakeSpeciesBasalMapName(string species)
         {
             string mapName = "outputs/density/{species}-BasalArea-{timestep}.img";
+            return SpeciesMapNames.ReplaceTemplateVars(mapName,
+                                                       species,
+                                                       PlugIn.ModelCore.CurrentTime);
+        }
+
+
+        //---------------------------------------------------------------------
+
+        private string MakeSpeciesBiomassMapName(string species)
+        {
+            string mapName = "outputs/density/{species}-Biomass-{timestep}.img";
             return SpeciesMapNames.ReplaceTemplateVars(mapName,
                                                        species,
                                                        PlugIn.ModelCore.CurrentTime);
@@ -275,6 +316,17 @@ namespace Landis.Extension.Output.Density
 
         //---------------------------------------------------------------------
 
+        private static int ComputeSpeciesBiomass(Landis.Library.DensityCohorts.ISpeciesCohorts cohorts)
+        {
+            int total = 0;
+            if (cohorts != null)
+                //total = cohorts.Sum(x => x.Biomass);
+                total = cohorts.TotalBiomass;
+            return total;
+        }
+
+        //---------------------------------------------------------------------
+
         private static int ComputeTotalTreeNumber(Landis.Library.DensityCohorts.ISiteCohorts cohorts)
         {
             int total = 0;
@@ -295,6 +347,19 @@ namespace Landis.Extension.Output.Density
                 foreach (Landis.Library.DensityCohorts.ISpeciesCohorts speciesCohorts in cohorts)
                 {
                     total += ComputeSpeciesBasal(speciesCohorts);
+                }
+            return total;
+        }
+
+        //---------------------------------------------------------------------
+
+        private static int ComputeTotalBiomass(Landis.Library.DensityCohorts.ISiteCohorts cohorts)
+        {
+            int total = 0;
+            if (cohorts != null)
+                foreach (Landis.Library.DensityCohorts.ISpeciesCohorts speciesCohorts in cohorts)
+                {
+                    total += ComputeSpeciesBiomass(speciesCohorts);
                 }
             return total;
         }

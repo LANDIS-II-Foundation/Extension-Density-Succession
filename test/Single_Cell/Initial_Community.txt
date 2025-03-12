@@ -1,0 +1,7 @@
+LandisData "Initial Communities"
+
+MapCode 1
+AbieConc  20 (96) 30 (192) 40 (48) 50 (144) 70 (96)
+PinuPond  80 (48)
+PopuTrem  70 (48) 140 (48) 170 (48) 180 (48)
+PseuMenz  10 (600) 30 (144) 50 (48) 60 (48) 70 (48) 80 (96)

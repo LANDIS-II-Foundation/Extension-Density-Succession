@@ -1,0 +1,6 @@
+LandisData	Ecoregions
+
+
+>> Active Map_code Name Description
+      yes    1   eco1	"Jeffrey Pine/Mixed Conifer"
+      no     0   empty   "Water/Urban/Rock/Outside LTB"

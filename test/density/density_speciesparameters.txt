@@ -1,5 +1,5 @@
 LandisData	DensitySpeciesParameters																
 
-DensitySpeciesParameters	SpType		BiomassClass		MaxDia		MaxSDI		TotalSeed		CarbonCoef
-querrubr					0			11					65			570			0				0.5
-pinubank						1			17					70			1100		0				0.5
+DensitySpeciesParameters	SpType		BiomassClass		MaxDia		MaxSDI		TotalSeed		CarbonCoef		SnagType
+querrubr					0			11					65			570			20				0.5				1
+pinubank					1			17					70			1100		20				0.5				2

@@ -33,7 +33,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Landis.Library.DensityCohorts;
+using Landis.Library.SnagCohorts;
 using Landis.Library.Metadata;
+using Landis.Utilities;
 
 namespace Landis.Extension.Succession.Density
 {
@@ -43,14 +45,22 @@ namespace Landis.Extension.Succession.Density
         //public static ISiteVar<float> SiteRD;
         public static SpeciesDensity SpeciesDensity;
         //=====================================================================================
+
+        //================================== Snag ================================
+        //public static ISiteVar<float> SiteRD;
+        //public static SnagSpecies SnagSpecies;
+        public static ISnagSpeciesDataset SnagSpecies;
+        //=====================================================================================
+
         public static DateTime Date;
         public static ICore ModelCore;
         private static ISiteVar<SiteCohorts> sitecohorts;
+        private static ISiteVar<SiteSnagCohorts> sitesnagcohorts;
         private static DateTime StartDate;
         private static Dictionary<ActiveSite, string> SiteOutputNames;
         //public static ushort IMAX;
         //public static float FTimeStep;
-
+        private static ISiteVar<double> sitePET;
         public static biomassUtil biomass_util = new biomassUtil();
         public static bool UsingClimateLibrary;
         private ICommunity initialCommunity;
@@ -243,6 +253,7 @@ namespace Landis.Extension.Succession.Density
                 AssignOutputFiles.MapCells(outputfiles, ref SiteOutputNames);
             }
 
+            LoadSnagSpecies(GetParameter(Names.SnagInputFile).Value);
         }
 
         public override void Initialize()
@@ -251,16 +262,20 @@ namespace Landis.Extension.Succession.Density
             Cohort.DeathEvent += DeathEvent;
 
             sitecohorts = PlugIn.ModelCore.Landscape.NewSiteVar<Landis.Library.DensityCohorts.SiteCohorts>();
+            sitesnagcohorts = PlugIn.ModelCore.Landscape.NewSiteVar<SiteSnagCohorts>();
             Landis.Utilities.Directory.EnsureExists("output");
             Landis.Library.DensityCohorts.Names.LoadParameters(parameters);
             Timestep = ((Parameter<int>)GetParameter(Names.Timestep)).Value;
-
+            sitePET = ModelCore.Landscape.NewSiteVar<Double>();
             ObservedClimate.Initialize();
 
             SpeciesDensity = new SpeciesDensity();
             Landis.Library.DensityCohorts.SpeciesParameters.LoadParameters(SpeciesDensity);
+
+
             EcoregionData.Initialize();
-            SiteVars.Initialize();
+            Library.DensityCohorts.SiteVars.Initialize();
+            Landis.Library.DensityCohorts.MetadataHandler.InitializeMetadata(Timestep, "Density_Mortality_Log.csv", true);
             string DynamicEcoregionFile = ((Parameter<string>)GetParameter(Names.DynamicEcoregionFile)).Value;
             DynamicEcoregions.Initialize(DynamicEcoregionFile, false);
             var TimestepData = DynamicEcoregions.EcoRegData[0];
@@ -276,8 +291,10 @@ namespace Landis.Extension.Succession.Density
             DynamicEcoregions.ChangeDynamicParameters(0);  // Year 0
 
             Landis.Library.DensityCohorts.Cohorts.Initialize(Timestep);
+            Library.SnagCohorts.SnagCohorts.Initialize(Timestep);
             // This creates the cohorts - FIXME
             SiteCohorts.Initialize();
+            SiteSnagCohorts.Initialize();
 
             // John McNabb: initialize climate library after EcoregionPnET has been initialized
             InitializeClimateLibrary();
@@ -312,13 +329,17 @@ namespace Landis.Extension.Succession.Density
             ISiteVar<Landis.Library.BiomassCohorts.ISiteCohorts> biomassCohorts = PlugIn.ModelCore.Landscape.NewSiteVar<Landis.Library.BiomassCohorts.ISiteCohorts>();
             // Convert Density cohorts to agecohorts
             ISiteVar<Landis.Library.AgeOnlyCohorts.ISiteCohorts> AgeCohortSiteVar = PlugIn.ModelCore.Landscape.NewSiteVar<Landis.Library.AgeOnlyCohorts.ISiteCohorts>();
+
+            ISiteVar<Landis.Library.SnagCohorts.ISiteSnagCohorts> SnagCohorts = PlugIn.ModelCore.Landscape.NewSiteVar<Landis.Library.SnagCohorts.ISiteSnagCohorts>();
            
+
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {
                 Cohort.SetSiteAccessFunctions(sitecohorts[site]);
+                SnagCohort.SetSiteAccessFunctions(sitesnagcohorts[site]);
                 float tempRD = SiteVars.SiteRD[site];
                 DensityCohorts[site] = sitecohorts[site];
-
+                SnagCohorts[site] = sitesnagcohorts[site];
                 biomassCohorts[site] = sitecohorts[site];
                 if (sitecohorts[site] != null && biomassCohorts[site] == null)
                 {
@@ -330,10 +351,18 @@ namespace Landis.Extension.Succession.Density
                 {
                     throw new System.Exception("Cannot convert Density SiteCohorts to age-only site cohorts");
                 }
+
+                if (UsingClimateLibrary)
+                { sitePET[site] = ClimateRegionData.AnnualWeather[PlugIn.ModelCore.Ecoregion[site]].AnnualAET; }
+                Landis.Library.DensityCohorts.SiteVars.TotalSiteFineFuels(sitecohorts[site]);
             }
             ModelCore.RegisterSiteVar(DensityCohorts, "Succession.DensityCohorts");
             //ModelCore.RegisterSiteVar(biomassCohorts, "Succession.BiomassCohorts");
-            ModelCore.RegisterSiteVar(AgeCohortSiteVar, "Succession.AgeCohorts");          
+            ModelCore.RegisterSiteVar(AgeCohortSiteVar, "Succession.AgeCohorts");
+            ModelCore.RegisterSiteVar(SnagCohorts, "Succession.SnagCohorts");
+            Library.DensityCohorts.SiteVars.InitializeSnags();
+            if (UsingClimateLibrary)
+            { ModelCore.RegisterSiteVar(sitePET, "Succession.PET"); }
         }
 
         /// <summary>This must be called after EcoregionPnET.Initialize() has been called</summary>
@@ -358,8 +387,15 @@ namespace Landis.Extension.Succession.Density
 
         public void AddNewCohort(ISpecies species, ActiveSite site, string reproductionType, double propBiomass = 1.0)
         {
-            Cohort cohort = new Cohort(species, (ushort)Date.Year, (SiteOutputNames.ContainsKey(site)) ? SiteOutputNames[site] : null, (int)propBiomass);
-            
+
+            int establishNumber = (int)propBiomass;
+            if (reproductionType == "seed")
+            {
+                establishNumber = SpeciesDensity[species].TotalSeed;
+            }
+
+            Cohort cohort = new Cohort(species, (ushort)Date.Year, (SiteOutputNames.ContainsKey(site)) ? SiteOutputNames[site] : null, establishNumber);
+
             sitecohorts[site].AddNewCohort(cohort);
 
             if (reproductionType == "plant")
@@ -402,7 +438,7 @@ namespace Landis.Extension.Succession.Density
 
              // Create new sitecohorts
             sitecohorts[site] = new SiteCohorts(StartDate,site,initialCommunity, UsingClimateLibrary, SiteOutputNames.ContainsKey(site)? SiteOutputNames[site] :null);
-
+            sitesnagcohorts[site] = new SiteSnagCohorts(site);
            
            
         }
@@ -462,6 +498,7 @@ namespace Landis.Extension.Succession.Density
             DynamicEcoregions.ChangeDynamicParameters(PlugIn.ModelCore.CurrentTime);
 
             sitecohorts[site].Grow(site, successionTimestep.HasValue);
+            sitesnagcohorts[site].Grow(site, successionTimestep.HasValue);
            
             Date = EndDate;
              
@@ -476,7 +513,15 @@ namespace Landis.Extension.Succession.Density
         public override void Run()
         {
             bool isSuccessionTimestep = (ModelCore.CurrentTime % Timestep == 0);
-            //FIXME --- JSF --- Better way to check dynamic parameters?
+
+            if (UsingClimateLibrary)
+            {
+                foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
+                {
+                    sitePET[site] = ClimateRegionData.AnnualWeather[PlugIn.ModelCore.Ecoregion[site]].AnnualAET;
+                }
+            }
+                //FIXME --- JSF --- Better way to check dynamic parameters?
             if (isSuccessionTimestep && DynamicEcoregions.EcoRegData.ContainsKey(ModelCore.CurrentTime))
             {
                 Landis.Library.DensityCohorts.IDynamicEcoregionRecord[] TimestepData = (Landis.Library.DensityCohorts.IDynamicEcoregionRecord[])DynamicEcoregions.EcoRegData[ModelCore.CurrentTime];
@@ -507,7 +552,8 @@ namespace Landis.Extension.Succession.Density
         // Resources (growing space) is calculated internally during the growth calculations
         public bool SufficientResources(ISpecies species, ActiveSite site)
         {
-            return true;
+            bool sr = sitecohorts[site].Shade(site, species);
+            return sr;
         }
 
         public bool Establish(ISpecies species, ActiveSite site)
@@ -558,17 +604,25 @@ namespace Landis.Extension.Succession.Density
                 {
                     SiteCohorts mySiteCohorts = sitecohorts[site];
                     int matureTrees = 0;
-                    List<Cohort> spCohorts = mySiteCohorts.AllCohorts;
-                    if (mySiteCohorts[species] != null)
+                    for (int i = 0; i < mySiteCohorts.AllCohorts.Count; i++)
                     {
-                        foreach (Cohort cohort in mySiteCohorts[species])
+                        if (mySiteCohorts.AllCohorts[i].Species == species && mySiteCohorts.AllCohorts[i].Age > SpeciesDensity[species].Maturity)
                         {
-                            if (cohort.Age > SpeciesDensity[species].Maturity)
-                            {
-                                matureTrees += cohort.Treenumber;
-                            }
+                            matureTrees += mySiteCohorts.AllCohorts[i].Treenumber;
                         }
                     }
+                    
+                    //List<Cohort> spCohorts = mySiteCohorts.AllCohorts[species];
+                    //if (mySiteCohorts[species] != null)
+                    //{
+                    //    foreach (Cohort cohort in mySiteCohorts[species])
+                    //    {
+                    //        if (cohort.Age > SpeciesDensity[species].Maturity)
+                    //        {
+                    //            matureTrees += cohort.Treenumber;
+                    //        }
+                    //}
+                    //}
 
                     int local_tseed = SpeciesDensity[species].TotalSeed;
 
@@ -592,6 +646,21 @@ namespace Landis.Extension.Succession.Density
             {
                 return DynamicEcoregions.EstablishProbability[species, sitecohorts[site].Ecoregion];
             }
+        }
+
+        public T Load<T>(string path,
+                        ITextParser<T> parser)
+        {
+            return Landis.Data.Load<T>(path, parser);
+        }
+
+        private void LoadSnagSpecies(string path)
+        {
+            ModelCore.UI.WriteLine("Loading snag data from file \"{0}\" ...", path);
+            Library.SnagCohorts.DatasetParser parser = new Library.SnagCohorts.DatasetParser();
+            SnagSpecies = Load<ISnagSpeciesDataset>(path, parser);
+
+            //Register SnagSpecies as Sitevar
         }
     }
 }

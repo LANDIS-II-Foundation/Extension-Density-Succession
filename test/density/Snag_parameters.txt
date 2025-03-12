@@ -1,0 +1,5 @@
+LandisData	SnagSpecies
+
+>>Name			Longevity			Diameter_Coefficient			Age_Coefficient			DecayClass_Coefficient
+Snag1			40					0.1								0.2						0.3
+Snag2			50					0.05							0.15					0.25

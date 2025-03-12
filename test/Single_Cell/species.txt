@@ -1,0 +1,38 @@
+LandisData	Species
+
+
+>> Name Longevity Sexual_maturity Shade_tolerance Fire_tolerance SeedDispersal_Effective SeedDispersal_Maximum Vegetative_reprod_prob SproutAge_Min SproutAge_Max Post.fire_regen
+AbieConc		360		35	4	3	30	500		0		0	0	none									<<600	
+AbieMagn		580		40	4	4	30	500		0		0	0	none	                                <<650	
+CaloDecu		540		30	3	5	30	1000	0		0	0	none	                                <<650	
+PinuAlbi		690		30	3	2	30	2500	0.0001	100	690	none	                                <<1100
+PinuCont		730		7	1	2	30	300		0		0	0	none	                                <<370	
+PinuJeff		580		25	2	5	50	300		0		0	0	none	                                <<650	
+PinuLamb		500		20	3	5	30	400		0		0	0	none	                                <<700	
+PinuMont		940		18	3	4	30	800		0		0	0	none	                                <<700	
+PopuTrem		330		15	1	2	200	1000	0.9		1	175	resprout	                            <<290	
+TsugMert		820		20	5	1	30	800		0.0005	100	800	none	                                <<1000
+AcerMacr		400		10	3	2	50	450		0.4		1	300	resprout 	                            <<450	
+AescCali		300		10	3	1	30	100		0.8		2	200	resprout	                            <<300	
+AlnuRhom		1110	7	2	2	200	1000	0.2		2	200	resprout	<<n-fixer                   <<400	
+ArbuMenz		430		5	2	2	30	1000	0.8		4	300	resprout	                            <<450	
+CornNutt		250		10	4	1	30	300		0.8		2	100	resprout	                            <<220	
+JuniOcci		1160	20	2	1	60	500		0		0	0	none	                                <<1100
+LithDens		350		15	4	2	100	400		0.8		2	200	resprout	                            <<370	
+PinuAtte		200		10	1	1	30	2000	0		0	0	none	                                <<240	
+PinuMono		810		30	2	1	30	3000	0		0	0	none	                                <<1100
+PinuPond		700		10	1	5	30	2000	0		0	0	none	                                <<700	
+PinuSabi		400		20	1	3	30	200		0		0	0	none	                                <<400	
+PinuWash		660		10	1	5	30	2000	0		0	0	none	<<subspecies of ponderosa       <<700	
+PseuMenz		700		15	3	3	140	2000	0		0	0	none	                                <<850	
+QuerChry		490		20	4	2	100	1000	0.95	1	200	resprout	                            <<400	
+QuerDoug		900		20	3	2	100	500		0.8		3	200	resprout	                            <<450	
+QuerGarr		830		40	3	2	100	700		0.8		3	300	resprout	                            <<450	
+QuerKell		510		30	3	2	100	700		0.9		3	250	resprout	                            <<450	
+QuerWisl		450		20	3	1	100	800		0.6		3	300	resprout	                            <<450	
+TaxuBrev		450		12	1	1	30	300		0.1		10	60	resprout	                            <<500	
+TorrCali		450		10	4	1	30	300		0		0	0	none	<<evergreen non-con             <<400	
+UmbeCali		200		30	4	1	30	300		0.3		1	200	resprout	<<evergreen non-con         <<500	
+>>FX_R_SEED				5	1	1	30	500		0.75	5	70	resprout	<<n-fixer                   <<90	
+>>NOFX_R_SEED				5	1	1	30	500		0.75	5	70	resprout	<<n-fixer                   <<90	
+>>NOFX_NOR_SEED			5	2	1	30	1000	0		0	0	none	                                <<90	
