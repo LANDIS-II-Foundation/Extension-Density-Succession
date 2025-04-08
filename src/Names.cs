@@ -40,6 +40,8 @@ namespace Landis.Extension.Succession.Density
         public const string DynamicEcoregionFile = "DynamicEcoregionFile";
         public const string DiameterInputFile = "DiameterInputFile";
         public const string SnagInputFile = "SnagInputFile";
+        public const string SnagInitialCommunities = "SnagInitialCommunities";
+        public const string SnagInitialCommunitiesMap = "SnagInitialCommunitiesMap";
 
         //Ecoregion parameters
         //public const string LeakageFrac = "LeakageFrac";

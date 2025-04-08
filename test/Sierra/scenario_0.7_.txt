@@ -1,0 +1,34 @@
+LandisData	Scenario
+
+
+Duration	300
+Species	species.txt
+
+
+Ecoregions	ecoregions.txt
+EcoregionsMap	ecocalibration_zonal.img
+
+
+CellLength	180
+
+
+
+
+>> Succession Extension	Initialization File
+>> --------------------	-------------------
+"Density-Succession"	densitysuccession_0.7_.txt
+
+
+
+
+>> Disturbance Extensions	Initialization File
+>> --------------------	-------------------
+>>   "Land Use Change"	"land-use.txt"
+
+
+>> Output Extensions	Initialization File
+>> --------------------	-------------------
+ "Density Output"	output_Density.txt
+
+
+RandomNumberSeed  4357

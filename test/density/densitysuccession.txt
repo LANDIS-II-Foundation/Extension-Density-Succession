@@ -26,3 +26,7 @@ DisturbanceReductions	disturbance_reductions.txt
 BiomassVariableFile			BioMassCoef.txt
 
 SnagInputFile				Snag_parameters.txt
+
+SnagInitialCommunities		Snag_initial_community.txt
+
+SnagInitialCommunitiesMap	initialcommunity_test.img	

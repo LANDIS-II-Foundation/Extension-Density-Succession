@@ -217,4 +217,6 @@ FakesAssemblies/
 /test/density/demographic-seeding/
 /src/*.sln
 /test/LargeLandscape
+/test/Sierra/bda
+/test/Sierra/outputs
 

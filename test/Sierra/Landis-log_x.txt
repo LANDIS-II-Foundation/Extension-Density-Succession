@@ -1,0 +1,430 @@
+2024-06-12 14:41:18,669 - LANDIS-II 7.0 (7)
+2024-06-12 14:41:18,679 - 
+2024-06-12 14:41:18,877 - Loading scenario from file "scenario.txt" ...
+2024-06-12 14:41:18,961 - Initialized random number generator with user-supplied seed = 4,357
+2024-06-12 14:41:18,963 - Loading species data from file "species.txt" ...
+2024-06-12 14:41:18,987 - Loading ecoregions from file "ecoregions.txt" ...
+2024-06-12 14:41:19,009 - Initializing landscape from ecoregions map "ecocalibration_zonal.img" ...
+2024-06-12 14:41:19,057 - Cell length = 180 m, cell area = 3.24 ha
+2024-06-12 14:41:19,059 - Map dimensions: 104 rows by 260 columns = 27,040 cells
+2024-06-12 14:41:19,067 - Sites: 25,000 active (92.5%), 2,040 inactive (7.5%)
+2024-06-12 14:41:19,078 - Loading Density-Succession extension ...
+2024-06-12 14:41:19,214 - Initializing Density-Succession version 2.0.0.0
+2024-06-12 14:41:19,252 -    Registering Data:  Succession.SiteRd.
+2024-06-12 14:41:19,253 -    Registering Data:  Succession.FineFuels.
+2024-06-12 14:41:19,297 -    Generating summary table...
+2024-06-12 14:41:19,301 -    Loading dynamic input data from file "DynamicEcoregionInput.txt" ...
+2024-06-12 14:41:19,304 -   Dynamic Ecoregion Parser:  Add new year = 0.
+2024-06-12 14:41:19,308 -    Loading dynamic input data from file "establishment_probability.txt" ...
+2024-06-12 14:41:19,310 -   Dynamic Input Parser:  Add new year = 0.
+2024-06-12 14:41:19,313 -    Loading diameter input data from file "Ecoregion_diameter_table.txt" ...
+2024-06-12 14:41:19,318 -   Diameter Input Parser:  Add new ecoregion = eco1.
+2024-06-12 14:41:19,318 -   Diameter Input Parser:  Add new species = AbieConc.
+2024-06-12 14:41:19,319 -   Diameter Input Parser:  Add new species = AbieMagn.
+2024-06-12 14:41:19,320 -   Diameter Input Parser:  Add new species = AcerMacr.
+2024-06-12 14:41:19,321 -   Diameter Input Parser:  Add new species = AescCali.
+2024-06-12 14:41:19,321 -   Diameter Input Parser:  Add new species = AlnuRhom.
+2024-06-12 14:41:19,328 -   Diameter Input Parser:  Add new species = ArbuMenz.
+2024-06-12 14:41:19,328 -   Diameter Input Parser:  Add new species = CaloDecu.
+2024-06-12 14:41:19,329 -   Diameter Input Parser:  Add new species = CornNutt.
+2024-06-12 14:41:19,330 -   Diameter Input Parser:  Add new species = JuniOcci.
+2024-06-12 14:41:19,331 -   Diameter Input Parser:  Add new species = LithDens.
+2024-06-12 14:41:19,332 -   Diameter Input Parser:  Add new species = PinuAlbi.
+2024-06-12 14:41:19,333 -   Diameter Input Parser:  Add new species = PinuAtte.
+2024-06-12 14:41:19,333 -   Diameter Input Parser:  Add new species = PinuCont.
+2024-06-12 14:41:19,334 -   Diameter Input Parser:  Add new species = PinuJeff.
+2024-06-12 14:41:19,335 -   Diameter Input Parser:  Add new species = PinuLamb.
+2024-06-12 14:41:19,336 -   Diameter Input Parser:  Add new species = PinuMono.
+2024-06-12 14:41:19,337 -   Diameter Input Parser:  Add new species = PinuMont.
+2024-06-12 14:41:19,339 -   Diameter Input Parser:  Add new species = PinuPond.
+2024-06-12 14:41:19,341 -   Diameter Input Parser:  Add new species = PinuSabi.
+2024-06-12 14:41:19,342 -   Diameter Input Parser:  Add new species = PinuWash.
+2024-06-12 14:41:19,343 -   Diameter Input Parser:  Add new species = PopuTrem.
+2024-06-12 14:41:19,345 -   Diameter Input Parser:  Add new species = PseuMenz.
+2024-06-12 14:41:19,346 -   Diameter Input Parser:  Add new species = QuerChry.
+2024-06-12 14:41:19,347 -   Diameter Input Parser:  Add new species = QuerDoug.
+2024-06-12 14:41:19,349 -   Diameter Input Parser:  Add new species = QuerGarr.
+2024-06-12 14:41:19,351 -   Diameter Input Parser:  Add new species = QuerKell.
+2024-06-12 14:41:19,353 -   Diameter Input Parser:  Add new species = QuerWisl.
+2024-06-12 14:41:19,357 -   Diameter Input Parser:  Add new species = TaxuBrev.
+2024-06-12 14:41:19,358 -   Diameter Input Parser:  Add new species = TorrCali.
+2024-06-12 14:41:19,360 -   Diameter Input Parser:  Add new species = TsugMert.
+2024-06-12 14:41:19,363 -   Diameter Input Parser:  Add new species = UmbeCali.
+2024-06-12 14:41:19,364 -   Diameter Input Parser:  Add new ecoregion = eco10.
+2024-06-12 14:41:19,364 -   Diameter Input Parser:  Add new species = AbieConc.
+2024-06-12 14:41:19,365 -   Diameter Input Parser:  Add new species = AbieMagn.
+2024-06-12 14:41:19,368 -   Diameter Input Parser:  Add new species = AcerMacr.
+2024-06-12 14:41:19,370 -   Diameter Input Parser:  Add new species = AescCali.
+2024-06-12 14:41:19,373 -   Diameter Input Parser:  Add new species = AlnuRhom.
+2024-06-12 14:41:19,375 -   Diameter Input Parser:  Add new species = ArbuMenz.
+2024-06-12 14:41:19,376 -   Diameter Input Parser:  Add new species = CaloDecu.
+2024-06-12 14:41:19,378 -   Diameter Input Parser:  Add new species = CornNutt.
+2024-06-12 14:41:19,379 -   Diameter Input Parser:  Add new species = JuniOcci.
+2024-06-12 14:41:19,382 -   Diameter Input Parser:  Add new species = LithDens.
+2024-06-12 14:41:19,383 -   Diameter Input Parser:  Add new species = PinuAlbi.
+2024-06-12 14:41:19,388 -   Diameter Input Parser:  Add new species = PinuAtte.
+2024-06-12 14:41:19,390 -   Diameter Input Parser:  Add new species = PinuCont.
+2024-06-12 14:41:19,392 -   Diameter Input Parser:  Add new species = PinuJeff.
+2024-06-12 14:41:19,394 -   Diameter Input Parser:  Add new species = PinuLamb.
+2024-06-12 14:41:19,396 -   Diameter Input Parser:  Add new species = PinuMono.
+2024-06-12 14:41:19,399 -   Diameter Input Parser:  Add new species = PinuMont.
+2024-06-12 14:41:19,402 -   Diameter Input Parser:  Add new species = PinuPond.
+2024-06-12 14:41:19,404 -   Diameter Input Parser:  Add new species = PinuSabi.
+2024-06-12 14:41:19,405 -   Diameter Input Parser:  Add new species = PinuWash.
+2024-06-12 14:41:19,407 -   Diameter Input Parser:  Add new species = PopuTrem.
+2024-06-12 14:41:19,409 -   Diameter Input Parser:  Add new species = PseuMenz.
+2024-06-12 14:41:19,410 -   Diameter Input Parser:  Add new species = QuerChry.
+2024-06-12 14:41:19,413 -   Diameter Input Parser:  Add new species = QuerDoug.
+2024-06-12 14:41:19,420 -   Diameter Input Parser:  Add new species = QuerGarr.
+2024-06-12 14:41:19,426 -   Diameter Input Parser:  Add new species = QuerKell.
+2024-06-12 14:41:19,430 -   Diameter Input Parser:  Add new species = QuerWisl.
+2024-06-12 14:41:19,432 -   Diameter Input Parser:  Add new species = TaxuBrev.
+2024-06-12 14:41:19,433 -   Diameter Input Parser:  Add new species = TorrCali.
+2024-06-12 14:41:19,439 -   Diameter Input Parser:  Add new species = TsugMert.
+2024-06-12 14:41:19,442 -   Diameter Input Parser:  Add new species = UmbeCali.
+2024-06-12 14:41:19,443 -   Diameter Input Parser:  Add new ecoregion = eco2.
+2024-06-12 14:41:19,444 -   Diameter Input Parser:  Add new species = AbieConc.
+2024-06-12 14:41:19,445 -   Diameter Input Parser:  Add new species = AbieMagn.
+2024-06-12 14:41:19,447 -   Diameter Input Parser:  Add new species = AcerMacr.
+2024-06-12 14:41:19,447 -   Diameter Input Parser:  Add new species = AescCali.
+2024-06-12 14:41:19,448 -   Diameter Input Parser:  Add new species = AlnuRhom.
+2024-06-12 14:41:19,452 -   Diameter Input Parser:  Add new species = ArbuMenz.
+2024-06-12 14:41:19,455 -   Diameter Input Parser:  Add new species = CaloDecu.
+2024-06-12 14:41:19,458 -   Diameter Input Parser:  Add new species = CornNutt.
+2024-06-12 14:41:19,459 -   Diameter Input Parser:  Add new species = JuniOcci.
+2024-06-12 14:41:19,463 -   Diameter Input Parser:  Add new species = LithDens.
+2024-06-12 14:41:19,464 -   Diameter Input Parser:  Add new species = PinuAlbi.
+2024-06-12 14:41:19,468 -   Diameter Input Parser:  Add new species = PinuAtte.
+2024-06-12 14:41:19,469 -   Diameter Input Parser:  Add new species = PinuCont.
+2024-06-12 14:41:19,472 -   Diameter Input Parser:  Add new species = PinuJeff.
+2024-06-12 14:41:19,475 -   Diameter Input Parser:  Add new species = PinuLamb.
+2024-06-12 14:41:19,476 -   Diameter Input Parser:  Add new species = PinuMono.
+2024-06-12 14:41:19,479 -   Diameter Input Parser:  Add new species = PinuMont.
+2024-06-12 14:41:19,483 -   Diameter Input Parser:  Add new species = PinuPond.
+2024-06-12 14:41:19,486 -   Diameter Input Parser:  Add new species = PinuSabi.
+2024-06-12 14:41:19,490 -   Diameter Input Parser:  Add new species = PinuWash.
+2024-06-12 14:41:19,494 -   Diameter Input Parser:  Add new species = PopuTrem.
+2024-06-12 14:41:19,498 -   Diameter Input Parser:  Add new species = PseuMenz.
+2024-06-12 14:41:19,502 -   Diameter Input Parser:  Add new species = QuerChry.
+2024-06-12 14:41:19,504 -   Diameter Input Parser:  Add new species = QuerDoug.
+2024-06-12 14:41:19,510 -   Diameter Input Parser:  Add new species = QuerGarr.
+2024-06-12 14:41:19,519 -   Diameter Input Parser:  Add new species = QuerKell.
+2024-06-12 14:41:19,526 -   Diameter Input Parser:  Add new species = QuerWisl.
+2024-06-12 14:41:19,534 -   Diameter Input Parser:  Add new species = TaxuBrev.
+2024-06-12 14:41:19,541 -   Diameter Input Parser:  Add new species = TorrCali.
+2024-06-12 14:41:19,547 -   Diameter Input Parser:  Add new species = TsugMert.
+2024-06-12 14:41:19,555 -   Diameter Input Parser:  Add new species = UmbeCali.
+2024-06-12 14:41:19,556 -   Diameter Input Parser:  Add new ecoregion = eco3.
+2024-06-12 14:41:19,558 -   Diameter Input Parser:  Add new species = AbieConc.
+2024-06-12 14:41:19,564 -   Diameter Input Parser:  Add new species = AbieMagn.
+2024-06-12 14:41:19,568 -   Diameter Input Parser:  Add new species = AcerMacr.
+2024-06-12 14:41:19,575 -   Diameter Input Parser:  Add new species = AescCali.
+2024-06-12 14:41:19,577 -   Diameter Input Parser:  Add new species = AlnuRhom.
+2024-06-12 14:41:19,580 -   Diameter Input Parser:  Add new species = ArbuMenz.
+2024-06-12 14:41:19,582 -   Diameter Input Parser:  Add new species = CaloDecu.
+2024-06-12 14:41:19,585 -   Diameter Input Parser:  Add new species = CornNutt.
+2024-06-12 14:41:19,586 -   Diameter Input Parser:  Add new species = JuniOcci.
+2024-06-12 14:41:19,592 -   Diameter Input Parser:  Add new species = LithDens.
+2024-06-12 14:41:19,594 -   Diameter Input Parser:  Add new species = PinuAlbi.
+2024-06-12 14:41:19,597 -   Diameter Input Parser:  Add new species = PinuAtte.
+2024-06-12 14:41:19,598 -   Diameter Input Parser:  Add new species = PinuCont.
+2024-06-12 14:41:19,600 -   Diameter Input Parser:  Add new species = PinuJeff.
+2024-06-12 14:41:19,603 -   Diameter Input Parser:  Add new species = PinuLamb.
+2024-06-12 14:41:19,613 -   Diameter Input Parser:  Add new species = PinuMono.
+2024-06-12 14:41:19,619 -   Diameter Input Parser:  Add new species = PinuMont.
+2024-06-12 14:41:19,624 -   Diameter Input Parser:  Add new species = PinuPond.
+2024-06-12 14:41:19,628 -   Diameter Input Parser:  Add new species = PinuSabi.
+2024-06-12 14:41:19,631 -   Diameter Input Parser:  Add new species = PinuWash.
+2024-06-12 14:41:19,634 -   Diameter Input Parser:  Add new species = PopuTrem.
+2024-06-12 14:41:19,639 -   Diameter Input Parser:  Add new species = PseuMenz.
+2024-06-12 14:41:19,643 -   Diameter Input Parser:  Add new species = QuerChry.
+2024-06-12 14:41:19,646 -   Diameter Input Parser:  Add new species = QuerDoug.
+2024-06-12 14:41:19,651 -   Diameter Input Parser:  Add new species = QuerGarr.
+2024-06-12 14:41:19,657 -   Diameter Input Parser:  Add new species = QuerKell.
+2024-06-12 14:41:19,660 -   Diameter Input Parser:  Add new species = QuerWisl.
+2024-06-12 14:41:19,661 -   Diameter Input Parser:  Add new species = TaxuBrev.
+2024-06-12 14:41:19,663 -   Diameter Input Parser:  Add new species = TorrCali.
+2024-06-12 14:41:19,665 -   Diameter Input Parser:  Add new species = TsugMert.
+2024-06-12 14:41:19,673 -   Diameter Input Parser:  Add new species = UmbeCali.
+2024-06-12 14:41:19,674 -   Diameter Input Parser:  Add new ecoregion = eco4.
+2024-06-12 14:41:19,675 -   Diameter Input Parser:  Add new species = AbieConc.
+2024-06-12 14:41:19,677 -   Diameter Input Parser:  Add new species = AbieMagn.
+2024-06-12 14:41:19,681 -   Diameter Input Parser:  Add new species = AcerMacr.
+2024-06-12 14:41:19,685 -   Diameter Input Parser:  Add new species = AescCali.
+2024-06-12 14:41:19,686 -   Diameter Input Parser:  Add new species = AlnuRhom.
+2024-06-12 14:41:19,692 -   Diameter Input Parser:  Add new species = ArbuMenz.
+2024-06-12 14:41:19,693 -   Diameter Input Parser:  Add new species = CaloDecu.
+2024-06-12 14:41:19,695 -   Diameter Input Parser:  Add new species = CornNutt.
+2024-06-12 14:41:19,697 -   Diameter Input Parser:  Add new species = JuniOcci.
+2024-06-12 14:41:19,701 -   Diameter Input Parser:  Add new species = LithDens.
+2024-06-12 14:41:19,703 -   Diameter Input Parser:  Add new species = PinuAlbi.
+2024-06-12 14:41:19,706 -   Diameter Input Parser:  Add new species = PinuAtte.
+2024-06-12 14:41:19,707 -   Diameter Input Parser:  Add new species = PinuCont.
+2024-06-12 14:41:19,710 -   Diameter Input Parser:  Add new species = PinuJeff.
+2024-06-12 14:41:19,713 -   Diameter Input Parser:  Add new species = PinuLamb.
+2024-06-12 14:41:19,716 -   Diameter Input Parser:  Add new species = PinuMono.
+2024-06-12 14:41:19,720 -   Diameter Input Parser:  Add new species = PinuMont.
+2024-06-12 14:41:19,724 -   Diameter Input Parser:  Add new species = PinuPond.
+2024-06-12 14:41:19,725 -   Diameter Input Parser:  Add new species = PinuSabi.
+2024-06-12 14:41:19,726 -   Diameter Input Parser:  Add new species = PinuWash.
+2024-06-12 14:41:19,728 -   Diameter Input Parser:  Add new species = PopuTrem.
+2024-06-12 14:41:19,731 -   Diameter Input Parser:  Add new species = PseuMenz.
+2024-06-12 14:41:19,733 -   Diameter Input Parser:  Add new species = QuerChry.
+2024-06-12 14:41:19,735 -   Diameter Input Parser:  Add new species = QuerDoug.
+2024-06-12 14:41:19,740 -   Diameter Input Parser:  Add new species = QuerGarr.
+2024-06-12 14:41:19,742 -   Diameter Input Parser:  Add new species = QuerKell.
+2024-06-12 14:41:19,743 -   Diameter Input Parser:  Add new species = QuerWisl.
+2024-06-12 14:41:19,744 -   Diameter Input Parser:  Add new species = TaxuBrev.
+2024-06-12 14:41:19,744 -   Diameter Input Parser:  Add new species = TorrCali.
+2024-06-12 14:41:19,747 -   Diameter Input Parser:  Add new species = TsugMert.
+2024-06-12 14:41:19,750 -   Diameter Input Parser:  Add new species = UmbeCali.
+2024-06-12 14:41:19,751 -   Diameter Input Parser:  Add new ecoregion = eco5.
+2024-06-12 14:41:19,752 -   Diameter Input Parser:  Add new species = AbieConc.
+2024-06-12 14:41:19,753 -   Diameter Input Parser:  Add new species = AbieMagn.
+2024-06-12 14:41:19,756 -   Diameter Input Parser:  Add new species = AcerMacr.
+2024-06-12 14:41:19,757 -   Diameter Input Parser:  Add new species = AescCali.
+2024-06-12 14:41:19,757 -   Diameter Input Parser:  Add new species = AlnuRhom.
+2024-06-12 14:41:19,761 -   Diameter Input Parser:  Add new species = ArbuMenz.
+2024-06-12 14:41:19,763 -   Diameter Input Parser:  Add new species = CaloDecu.
+2024-06-12 14:41:19,764 -   Diameter Input Parser:  Add new species = CornNutt.
+2024-06-12 14:41:19,765 -   Diameter Input Parser:  Add new species = JuniOcci.
+2024-06-12 14:41:19,769 -   Diameter Input Parser:  Add new species = LithDens.
+2024-06-12 14:41:19,769 -   Diameter Input Parser:  Add new species = PinuAlbi.
+2024-06-12 14:41:19,771 -   Diameter Input Parser:  Add new species = PinuAtte.
+2024-06-12 14:41:19,771 -   Diameter Input Parser:  Add new species = PinuCont.
+2024-06-12 14:41:19,773 -   Diameter Input Parser:  Add new species = PinuJeff.
+2024-06-12 14:41:19,774 -   Diameter Input Parser:  Add new species = PinuLamb.
+2024-06-12 14:41:19,775 -   Diameter Input Parser:  Add new species = PinuMono.
+2024-06-12 14:41:19,779 -   Diameter Input Parser:  Add new species = PinuMont.
+2024-06-12 14:41:19,781 -   Diameter Input Parser:  Add new species = PinuPond.
+2024-06-12 14:41:19,782 -   Diameter Input Parser:  Add new species = PinuSabi.
+2024-06-12 14:41:19,783 -   Diameter Input Parser:  Add new species = PinuWash.
+2024-06-12 14:41:19,784 -   Diameter Input Parser:  Add new species = PopuTrem.
+2024-06-12 14:41:19,785 -   Diameter Input Parser:  Add new species = PseuMenz.
+2024-06-12 14:41:19,786 -   Diameter Input Parser:  Add new species = QuerChry.
+2024-06-12 14:41:19,787 -   Diameter Input Parser:  Add new species = QuerDoug.
+2024-06-12 14:41:19,790 -   Diameter Input Parser:  Add new species = QuerGarr.
+2024-06-12 14:41:19,793 -   Diameter Input Parser:  Add new species = QuerKell.
+2024-06-12 14:41:19,795 -   Diameter Input Parser:  Add new species = QuerWisl.
+2024-06-12 14:41:19,797 -   Diameter Input Parser:  Add new species = TaxuBrev.
+2024-06-12 14:41:19,797 -   Diameter Input Parser:  Add new species = TorrCali.
+2024-06-12 14:41:19,799 -   Diameter Input Parser:  Add new species = TsugMert.
+2024-06-12 14:41:19,802 -   Diameter Input Parser:  Add new species = UmbeCali.
+2024-06-12 14:41:19,803 -   Diameter Input Parser:  Add new ecoregion = eco6.
+2024-06-12 14:41:19,803 -   Diameter Input Parser:  Add new species = AbieConc.
+2024-06-12 14:41:19,804 -   Diameter Input Parser:  Add new species = AbieMagn.
+2024-06-12 14:41:19,808 -   Diameter Input Parser:  Add new species = AcerMacr.
+2024-06-12 14:41:19,809 -   Diameter Input Parser:  Add new species = AescCali.
+2024-06-12 14:41:19,810 -   Diameter Input Parser:  Add new species = AlnuRhom.
+2024-06-12 14:41:19,813 -   Diameter Input Parser:  Add new species = ArbuMenz.
+2024-06-12 14:41:19,814 -   Diameter Input Parser:  Add new species = CaloDecu.
+2024-06-12 14:41:19,815 -   Diameter Input Parser:  Add new species = CornNutt.
+2024-06-12 14:41:19,815 -   Diameter Input Parser:  Add new species = JuniOcci.
+2024-06-12 14:41:19,818 -   Diameter Input Parser:  Add new species = LithDens.
+2024-06-12 14:41:19,819 -   Diameter Input Parser:  Add new species = PinuAlbi.
+2024-06-12 14:41:19,823 -   Diameter Input Parser:  Add new species = PinuAtte.
+2024-06-12 14:41:19,824 -   Diameter Input Parser:  Add new species = PinuCont.
+2024-06-12 14:41:19,826 -   Diameter Input Parser:  Add new species = PinuJeff.
+2024-06-12 14:41:19,828 -   Diameter Input Parser:  Add new species = PinuLamb.
+2024-06-12 14:41:19,829 -   Diameter Input Parser:  Add new species = PinuMono.
+2024-06-12 14:41:19,832 -   Diameter Input Parser:  Add new species = PinuMont.
+2024-06-12 14:41:19,835 -   Diameter Input Parser:  Add new species = PinuPond.
+2024-06-12 14:41:19,837 -   Diameter Input Parser:  Add new species = PinuSabi.
+2024-06-12 14:41:19,839 -   Diameter Input Parser:  Add new species = PinuWash.
+2024-06-12 14:41:19,842 -   Diameter Input Parser:  Add new species = PopuTrem.
+2024-06-12 14:41:19,842 -   Diameter Input Parser:  Add new species = PseuMenz.
+2024-06-12 14:41:19,843 -   Diameter Input Parser:  Add new species = QuerChry.
+2024-06-12 14:41:19,844 -   Diameter Input Parser:  Add new species = QuerDoug.
+2024-06-12 14:41:19,848 -   Diameter Input Parser:  Add new species = QuerGarr.
+2024-06-12 14:41:19,849 -   Diameter Input Parser:  Add new species = QuerKell.
+2024-06-12 14:41:19,853 -   Diameter Input Parser:  Add new species = QuerWisl.
+2024-06-12 14:41:19,854 -   Diameter Input Parser:  Add new species = TaxuBrev.
+2024-06-12 14:41:19,856 -   Diameter Input Parser:  Add new species = TorrCali.
+2024-06-12 14:41:19,859 -   Diameter Input Parser:  Add new species = TsugMert.
+2024-06-12 14:41:19,862 -   Diameter Input Parser:  Add new species = UmbeCali.
+2024-06-12 14:41:19,863 -   Diameter Input Parser:  Add new ecoregion = eco7.
+2024-06-12 14:41:19,863 -   Diameter Input Parser:  Add new species = AbieConc.
+2024-06-12 14:41:19,865 -   Diameter Input Parser:  Add new species = AbieMagn.
+2024-06-12 14:41:19,868 -   Diameter Input Parser:  Add new species = AcerMacr.
+2024-06-12 14:41:19,871 -   Diameter Input Parser:  Add new species = AescCali.
+2024-06-12 14:41:19,872 -   Diameter Input Parser:  Add new species = AlnuRhom.
+2024-06-12 14:41:19,876 -   Diameter Input Parser:  Add new species = ArbuMenz.
+2024-06-12 14:41:19,877 -   Diameter Input Parser:  Add new species = CaloDecu.
+2024-06-12 14:41:19,878 -   Diameter Input Parser:  Add new species = CornNutt.
+2024-06-12 14:41:19,879 -   Diameter Input Parser:  Add new species = JuniOcci.
+2024-06-12 14:41:19,883 -   Diameter Input Parser:  Add new species = LithDens.
+2024-06-12 14:41:19,885 -   Diameter Input Parser:  Add new species = PinuAlbi.
+2024-06-12 14:41:19,886 -   Diameter Input Parser:  Add new species = PinuAtte.
+2024-06-12 14:41:19,886 -   Diameter Input Parser:  Add new species = PinuCont.
+2024-06-12 14:41:19,887 -   Diameter Input Parser:  Add new species = PinuJeff.
+2024-06-12 14:41:19,889 -   Diameter Input Parser:  Add new species = PinuLamb.
+2024-06-12 14:41:19,890 -   Diameter Input Parser:  Add new species = PinuMono.
+2024-06-12 14:41:19,891 -   Diameter Input Parser:  Add new species = PinuMont.
+2024-06-12 14:41:19,895 -   Diameter Input Parser:  Add new species = PinuPond.
+2024-06-12 14:41:19,897 -   Diameter Input Parser:  Add new species = PinuSabi.
+2024-06-12 14:41:19,899 -   Diameter Input Parser:  Add new species = PinuWash.
+2024-06-12 14:41:19,900 -   Diameter Input Parser:  Add new species = PopuTrem.
+2024-06-12 14:41:19,901 -   Diameter Input Parser:  Add new species = PseuMenz.
+2024-06-12 14:41:19,902 -   Diameter Input Parser:  Add new species = QuerChry.
+2024-06-12 14:41:19,903 -   Diameter Input Parser:  Add new species = QuerDoug.
+2024-06-12 14:41:19,906 -   Diameter Input Parser:  Add new species = QuerGarr.
+2024-06-12 14:41:19,908 -   Diameter Input Parser:  Add new species = QuerKell.
+2024-06-12 14:41:19,909 -   Diameter Input Parser:  Add new species = QuerWisl.
+2024-06-12 14:41:19,910 -   Diameter Input Parser:  Add new species = TaxuBrev.
+2024-06-12 14:41:19,910 -   Diameter Input Parser:  Add new species = TorrCali.
+2024-06-12 14:41:19,911 -   Diameter Input Parser:  Add new species = TsugMert.
+2024-06-12 14:41:19,914 -   Diameter Input Parser:  Add new species = UmbeCali.
+2024-06-12 14:41:19,915 -   Diameter Input Parser:  Add new ecoregion = eco8.
+2024-06-12 14:41:19,915 -   Diameter Input Parser:  Add new species = AbieConc.
+2024-06-12 14:41:19,916 -   Diameter Input Parser:  Add new species = AbieMagn.
+2024-06-12 14:41:19,917 -   Diameter Input Parser:  Add new species = AcerMacr.
+2024-06-12 14:41:19,917 -   Diameter Input Parser:  Add new species = AescCali.
+2024-06-12 14:41:19,918 -   Diameter Input Parser:  Add new species = AlnuRhom.
+2024-06-12 14:41:19,921 -   Diameter Input Parser:  Add new species = ArbuMenz.
+2024-06-12 14:41:19,922 -   Diameter Input Parser:  Add new species = CaloDecu.
+2024-06-12 14:41:19,923 -   Diameter Input Parser:  Add new species = CornNutt.
+2024-06-12 14:41:19,924 -   Diameter Input Parser:  Add new species = JuniOcci.
+2024-06-12 14:41:19,925 -   Diameter Input Parser:  Add new species = LithDens.
+2024-06-12 14:41:19,926 -   Diameter Input Parser:  Add new species = PinuAlbi.
+2024-06-12 14:41:19,927 -   Diameter Input Parser:  Add new species = PinuAtte.
+2024-06-12 14:41:19,928 -   Diameter Input Parser:  Add new species = PinuCont.
+2024-06-12 14:41:19,930 -   Diameter Input Parser:  Add new species = PinuJeff.
+2024-06-12 14:41:19,931 -   Diameter Input Parser:  Add new species = PinuLamb.
+2024-06-12 14:41:19,932 -   Diameter Input Parser:  Add new species = PinuMono.
+2024-06-12 14:41:19,933 -   Diameter Input Parser:  Add new species = PinuMont.
+2024-06-12 14:41:19,934 -   Diameter Input Parser:  Add new species = PinuPond.
+2024-06-12 14:41:19,935 -   Diameter Input Parser:  Add new species = PinuSabi.
+2024-06-12 14:41:19,936 -   Diameter Input Parser:  Add new species = PinuWash.
+2024-06-12 14:41:19,937 -   Diameter Input Parser:  Add new species = PopuTrem.
+2024-06-12 14:41:19,937 -   Diameter Input Parser:  Add new species = PseuMenz.
+2024-06-12 14:41:19,939 -   Diameter Input Parser:  Add new species = QuerChry.
+2024-06-12 14:41:19,940 -   Diameter Input Parser:  Add new species = QuerDoug.
+2024-06-12 14:41:19,941 -   Diameter Input Parser:  Add new species = QuerGarr.
+2024-06-12 14:41:19,943 -   Diameter Input Parser:  Add new species = QuerKell.
+2024-06-12 14:41:19,945 -   Diameter Input Parser:  Add new species = QuerWisl.
+2024-06-12 14:41:19,946 -   Diameter Input Parser:  Add new species = TaxuBrev.
+2024-06-12 14:41:19,946 -   Diameter Input Parser:  Add new species = TorrCali.
+2024-06-12 14:41:19,947 -   Diameter Input Parser:  Add new species = TsugMert.
+2024-06-12 14:41:19,948 -   Diameter Input Parser:  Add new species = UmbeCali.
+2024-06-12 14:41:19,949 -   Diameter Input Parser:  Add new ecoregion = eco9.
+2024-06-12 14:41:19,949 -   Diameter Input Parser:  Add new species = AbieConc.
+2024-06-12 14:41:19,950 -   Diameter Input Parser:  Add new species = AbieMagn.
+2024-06-12 14:41:19,951 -   Diameter Input Parser:  Add new species = AcerMacr.
+2024-06-12 14:41:19,951 -   Diameter Input Parser:  Add new species = AescCali.
+2024-06-12 14:41:19,952 -   Diameter Input Parser:  Add new species = AlnuRhom.
+2024-06-12 14:41:19,953 -   Diameter Input Parser:  Add new species = ArbuMenz.
+2024-06-12 14:41:19,954 -   Diameter Input Parser:  Add new species = CaloDecu.
+2024-06-12 14:41:19,955 -   Diameter Input Parser:  Add new species = CornNutt.
+2024-06-12 14:41:19,956 -   Diameter Input Parser:  Add new species = JuniOcci.
+2024-06-12 14:41:19,961 -   Diameter Input Parser:  Add new species = LithDens.
+2024-06-12 14:41:19,962 -   Diameter Input Parser:  Add new species = PinuAlbi.
+2024-06-12 14:41:19,964 -   Diameter Input Parser:  Add new species = PinuAtte.
+2024-06-12 14:41:19,964 -   Diameter Input Parser:  Add new species = PinuCont.
+2024-06-12 14:41:19,965 -   Diameter Input Parser:  Add new species = PinuJeff.
+2024-06-12 14:41:19,967 -   Diameter Input Parser:  Add new species = PinuLamb.
+2024-06-12 14:41:19,968 -   Diameter Input Parser:  Add new species = PinuMono.
+2024-06-12 14:41:19,969 -   Diameter Input Parser:  Add new species = PinuMont.
+2024-06-12 14:41:19,970 -   Diameter Input Parser:  Add new species = PinuPond.
+2024-06-12 14:41:19,972 -   Diameter Input Parser:  Add new species = PinuSabi.
+2024-06-12 14:41:19,972 -   Diameter Input Parser:  Add new species = PinuWash.
+2024-06-12 14:41:19,975 -   Diameter Input Parser:  Add new species = PopuTrem.
+2024-06-12 14:41:19,976 -   Diameter Input Parser:  Add new species = PseuMenz.
+2024-06-12 14:41:19,977 -   Diameter Input Parser:  Add new species = QuerChry.
+2024-06-12 14:41:19,979 -   Diameter Input Parser:  Add new species = QuerDoug.
+2024-06-12 14:41:19,982 -   Diameter Input Parser:  Add new species = QuerGarr.
+2024-06-12 14:41:19,984 -   Diameter Input Parser:  Add new species = QuerKell.
+2024-06-12 14:41:19,986 -   Diameter Input Parser:  Add new species = QuerWisl.
+2024-06-12 14:41:19,988 -   Diameter Input Parser:  Add new species = TaxuBrev.
+2024-06-12 14:41:19,990 -   Diameter Input Parser:  Add new species = TorrCali.
+2024-06-12 14:41:19,991 -   Diameter Input Parser:  Add new species = TsugMert.
+2024-06-12 14:41:19,993 -   Diameter Input Parser:  Add new species = UmbeCali.
+2024-06-12 14:41:19,997 - Using climate files in ecoregion parameters: EcoregionParameters_density.txt.
+2024-06-12 14:41:19,998 - Spinning up biomass or reading from maps...
+2024-06-12 14:41:19,999 -    Loading initial communities from file "Initial_Community.txt" ...
+2024-06-12 14:41:20,118 -    Reading initial communities map "ecocalibration_ic.img" ...
+2024-06-12 14:41:23,694 -    Registering Data:  TimeOfLastSuccession.
+2024-06-12 14:41:23,695 -    Registering Data:  Shade.
+2024-06-12 14:41:23,696 -    Creating Dispersal Neighborhood List.
+2024-06-12 14:41:23,696 -    Dispersal:  NeighborRadius=3090, CellLength=180, numCellRadius=17
+2024-06-12 14:41:23,779 -    Registering Data:  Succession.DensityCohorts.
+2024-06-12 14:41:23,780 -    Registering Data:  Succession.AgeCohorts.
+2024-06-12 14:41:23,781 - Loading Density Output extension ...
+2024-06-12 14:41:23,788 -    Generating summary table...
+2024-06-12 14:41:23,801 - Using the following extensions ...
+   Extension Name            Extension Filename       
+   --------------            ------------------       
+   Density-Succession        densitysuccession.txt    
+   Density Output            output_Density.txt       
+
+2024-06-12 14:41:23,801 - Running Density Output ...
+2024-06-12 14:41:23,802 -    Writing all species maps ...
+2024-06-12 14:41:30,468 -    Writing AbieConc maps ...
+2024-06-12 14:41:30,990 -    Writing AbieMagn maps ...
+2024-06-12 14:41:31,351 -    Writing CaloDecu maps ...
+2024-06-12 14:41:31,699 -    Writing PinuAlbi maps ...
+2024-06-12 14:41:31,943 -    Writing PinuCont maps ...
+2024-06-12 14:41:32,542 -    Writing PinuJeff maps ...
+2024-06-12 14:41:32,772 -    Writing PinuLamb maps ...
+2024-06-12 14:41:32,983 -    Writing PinuMont maps ...
+2024-06-12 14:41:33,380 -    Writing PopuTrem maps ...
+2024-06-12 14:41:33,489 -    Writing TsugMert maps ...
+2024-06-12 14:41:33,735 -    Writing AcerMacr maps ...
+2024-06-12 14:41:33,857 -    Writing AescCali maps ...
+2024-06-12 14:41:33,971 -    Writing AlnuRhom maps ...
+2024-06-12 14:41:34,075 -    Writing ArbuMenz maps ...
+2024-06-12 14:41:34,215 -    Writing CornNutt maps ...
+2024-06-12 14:41:34,333 -    Writing JuniOcci maps ...
+2024-06-12 14:41:34,475 -    Writing LithDens maps ...
+2024-06-12 14:41:34,613 -    Writing PinuAtte maps ...
+2024-06-12 14:41:34,729 -    Writing PinuMono maps ...
+2024-06-12 14:41:34,830 -    Writing PinuPond maps ...
+2024-06-12 14:41:35,350 -    Writing PinuSabi maps ...
+2024-06-12 14:41:35,476 -    Writing PinuWash maps ...
+2024-06-12 14:41:35,574 -    Writing PseuMenz maps ...
+2024-06-12 14:41:36,194 -    Writing QuerChry maps ...
+2024-06-12 14:41:36,453 -    Writing QuerDoug maps ...
+2024-06-12 14:41:36,618 -    Writing QuerGarr maps ...
+2024-06-12 14:41:36,802 -    Writing QuerKell maps ...
+2024-06-12 14:41:37,062 -    Writing QuerWisl maps ...
+2024-06-12 14:41:37,187 -    Writing TaxuBrev maps ...
+2024-06-12 14:41:37,293 -    Writing TorrCali maps ...
+2024-06-12 14:41:37,394 -    Writing UmbeCali maps ...
+2024-06-12 14:41:37,513 - Current time: 10
+2024-06-12 14:41:37,514 - Running Density-Succession ...
+2024-06-12 14:41:48,386 - Running Density Output ...
+2024-06-12 14:41:48,387 -    Writing all species maps ...
+2024-06-12 14:41:56,389 -    Writing AbieConc maps ...
+2024-06-12 14:41:56,994 -    Writing AbieMagn maps ...
+2024-06-12 14:41:57,504 -    Writing CaloDecu maps ...
+2024-06-12 14:41:57,918 -    Writing PinuAlbi maps ...
+2024-06-12 14:41:58,253 -    Writing PinuCont maps ...
+2024-06-12 14:41:59,091 -    Writing PinuJeff maps ...
+2024-06-12 14:41:59,399 -    Writing PinuLamb maps ...
+2024-06-12 14:41:59,706 -    Writing PinuMont maps ...
+2024-06-12 14:42:00,162 -    Writing PopuTrem maps ...
+2024-06-12 14:42:00,265 -    Writing TsugMert maps ...
+2024-06-12 14:42:00,526 -    Writing AcerMacr maps ...
+2024-06-12 14:42:00,685 -    Writing AescCali maps ...
+2024-06-12 14:42:00,791 -    Writing AlnuRhom maps ...
+2024-06-12 14:42:00,904 -    Writing ArbuMenz maps ...
+2024-06-12 14:42:01,071 -    Writing CornNutt maps ...
+2024-06-12 14:42:01,186 -    Writing JuniOcci maps ...
+2024-06-12 14:42:01,360 -    Writing LithDens maps ...
+2024-06-12 14:42:01,517 -    Writing PinuAtte maps ...
+2024-06-12 14:42:01,644 -    Writing PinuMono maps ...
+2024-06-12 14:42:01,757 -    Writing PinuPond maps ...
+2024-06-12 14:42:02,497 -    Writing PinuSabi maps ...
+2024-06-12 14:42:02,642 -    Writing PinuWash maps ...
+2024-06-12 14:42:02,759 -    Writing PseuMenz maps ...
+2024-06-12 14:42:03,589 -    Writing QuerChry maps ...
+2024-06-12 14:42:03,913 -    Writing QuerDoug maps ...
+2024-06-12 14:42:04,106 -    Writing QuerGarr maps ...
+2024-06-12 14:42:04,346 -    Writing QuerKell maps ...
+2024-06-12 14:42:04,677 -    Writing QuerWisl maps ...
+2024-06-12 14:42:04,820 -    Writing TaxuBrev maps ...
+2024-06-12 14:42:04,915 -    Writing TorrCali maps ...
+2024-06-12 14:42:05,023 -    Writing UmbeCali maps ...
+2024-06-12 14:42:05,149 - Current time: 20
+2024-06-12 14:42:05,150 - Running Density-Succession ...
+2024-06-12 14:42:23,251 - Running Density Output ...
+2024-06-12 14:42:23,251 -    Writing all species maps ...

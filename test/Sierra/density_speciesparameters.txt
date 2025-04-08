@@ -1,0 +1,38 @@
+LandisData	DensitySpeciesParameters
+
+
+DensitySpeciesParameters	SpType		BiomassClass		MaxDia		MaxSDI		TotalSeed		CarbonCoef		SnagType
+AbieConc		1	15	9999	1976	10	0.5	1
+AbieMagn		1	15	9999	2470	10	0.5	1
+CaloDecu		1	12	9999	1423	10	0.5	1
+>>FX_R_SEED				9999			10	0.5	1
+>>NOFX_R_SEED			9999			10	0.5	1
+>>NOFX_NOR_SEED			9999			10	0.5	1
+PinuAlbi		1	17	9999	1534	10	0.5	1
+PinuCont		1	17	9999	1677	10	0.5	1
+PinuJeff		1	17	9999	902		10	0.5	1
+PinuLamb		1	17	9999	1386	10	0.5	1
+PinuMont		1	17	9999	672		10	0.5	1
+PopuTrem		0	1	9999	1388	10	0.5	1
+TsugMert		1	16	9999	1697	10	0.5	1
+AcerMacr		0	5	9999	1554	10	0.5	1
+AescCali		0	7	9999	1003	10	0.5	1
+AlnuRhom		0	2	9999	1003	10	0.5	1
+ArbuMenz		0	7	9999	1273	10	0.5	1
+CornNutt		0	7	9999	1003	10	0.5	1
+JuniOcci		1	12	9999	672		10	0.5	1
+LithDens		0	7	9999	1939	10	0.5	1
+PinuAtte		1	17	9999	1677	10	0.5	1
+PinuMono		1	17	9999	884		10	0.5	1
+PinuPond		1	17	9999	902		10	0.5	1
+PinuSabi		1	17	9999	529		10	0.5	1
+PinuWash		1	17	9999	902		10	0.5	1
+PseuMenz		1	14	9999	1408	10	0.5	1
+QuerChry		0	11	9999	1648	10	0.5	1
+QuerDoug		0	11	9999	529		10	0.5	1
+QuerGarr		0	11	9999	1003	10	0.5	1
+QuerKell		0	11	9999	1003	10	0.5	1
+QuerWisl		0	11	9999	1432	10	0.5	1
+TaxuBrev		1	16	9999	1423	10	0.5	1
+TorrCali		1	16	9999	902		10	0.5	1
+UmbeCali		0	7	9999	1003	10	0.5	1

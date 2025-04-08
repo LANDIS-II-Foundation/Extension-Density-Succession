@@ -36,6 +36,7 @@ using Landis.Library.DensityCohorts;
 using Landis.Library.SnagCohorts;
 using Landis.Library.Metadata;
 using Landis.Utilities;
+using Landis.Library.SnagCohorts.InitialCommunities;
 
 namespace Landis.Extension.Succession.Density
 {
@@ -64,6 +65,7 @@ namespace Landis.Extension.Succession.Density
         public static biomassUtil biomass_util = new biomassUtil();
         public static bool UsingClimateLibrary;
         private ICommunity initialCommunity;
+        private ISnagCommunity initialSnagCommunity;
         //public static int CohortBinSize;
 
         private static SortedDictionary<string, Parameter<string>> parameters = new SortedDictionary<string, Parameter<string>>(StringComparer.InvariantCultureIgnoreCase);
@@ -317,7 +319,9 @@ namespace Landis.Extension.Succession.Density
 
             string InitialCommunitiesTXTFile = GetParameter(Names.InitialCommunities).Value;
             string InitialCommunitiesMapFile = GetParameter(Names.InitialCommunitiesMap).Value;
+            string InitialSnagCommunitiesTXTFile = GetParameter(Names.SnagInitialCommunities).Value;
             InitializeSites(InitialCommunitiesTXTFile, InitialCommunitiesMapFile, ModelCore);
+            InitializeSnagSites(InitialSnagCommunitiesTXTFile, InitialCommunitiesMapFile, ModelCore);
 
             SeedingAlgorithms SeedAlgorithm = (SeedingAlgorithms)Enum.Parse(typeof(SeedingAlgorithms), parameters["SeedingAlgorithm"].Value);
 
@@ -375,6 +379,7 @@ namespace Landis.Extension.Succession.Density
             if (UsingClimateLibrary)
             {
                 PlugIn.ModelCore.UI.WriteLine($"Using climate library: {climateLibraryFileName.Value}.");
+                //Climate.Initialize(climateLibraryFileName.Value, false, ModelCore, 0);
                 Climate.Initialize(climateLibraryFileName.Value, false, ModelCore);
                 ClimateRegionData.Initialize();
                 
@@ -438,9 +443,24 @@ namespace Landis.Extension.Succession.Density
 
              // Create new sitecohorts
             sitecohorts[site] = new SiteCohorts(StartDate,site,initialCommunity, UsingClimateLibrary, SiteOutputNames.ContainsKey(site)? SiteOutputNames[site] :null);
-            sitesnagcohorts[site] = new SiteSnagCohorts(site);
            
            
+        }
+
+        protected void InitializeSnagSite(ActiveSite site)//,ICommunity initialCommunity)
+        {
+            if (m == null)
+            {
+                m = new MyClock(PlugIn.ModelCore.Landscape.ActiveSiteCount);
+            }
+
+            m.Next();
+            m.WriteUpdate();
+
+            // Create new sitecohorts
+            sitesnagcohorts[site] = new SiteSnagCohorts(site, initialSnagCommunity);
+
+
         }
 
         public override void InitializeSites(string initialCommunitiesText, string initialCommunitiesMap, ICore modelCore)
@@ -448,7 +468,6 @@ namespace Landis.Extension.Succession.Density
 
             ModelCore.UI.WriteLine("   Loading initial communities from file \"{0}\" ...", initialCommunitiesText);
             Landis.Library.DensityCohorts.InitialCommunities.DatasetParser parser = new Landis.Library.DensityCohorts.InitialCommunities.DatasetParser(Timestep, ModelCore.Species);
-
             //Landis.Library.InitialCommunities.DatasetParser parser = new Landis.Library.InitialCommunities.DatasetParser(Timestep, ModelCore.Species);
             Landis.Library.DensityCohorts.InitialCommunities.IDataset communities = Landis.Data.Load<Landis.Library.DensityCohorts.InitialCommunities.IDataset>(initialCommunitiesText, parser);
 
@@ -478,6 +497,43 @@ namespace Landis.Extension.Succession.Density
                     }
 
                     InitializeSite(activeSite);
+                }
+            }
+        }
+
+        public void InitializeSnagSites(string initialSnagCommunitiesText, string initialCommunitiesMap, ICore modelCore)
+        {
+
+            ModelCore.UI.WriteLine("   Loading initial communities from file \"{0}\" ...", initialSnagCommunitiesText);
+            Landis.Library.SnagCohorts.InitialCommunities.DatasetParser snagParser = new Landis.Library.SnagCohorts.InitialCommunities.DatasetParser(Timestep, SnagSpecies);
+            Landis.Library.SnagCohorts.InitialCommunities.IDataset snagCommunities = Landis.Data.Load<Landis.Library.SnagCohorts.InitialCommunities.IDataset>(initialSnagCommunitiesText, snagParser);
+
+            ModelCore.UI.WriteLine("   Reading initial communities map \"{0}\" ...", initialCommunitiesMap);
+            IInputRaster<uintPixel> map;
+            map = ModelCore.OpenRaster<uintPixel>(initialCommunitiesMap);
+            using (map)
+            {
+                uintPixel pixel = map.BufferPixel;
+                foreach (Site site in ModelCore.Landscape.AllSites)
+                {
+                    map.ReadBufferPixel();
+                    uint mapCode = pixel.MapCode.Value;
+                    if (!site.IsActive)
+                        continue;
+
+                    //if (!modelCore.Ecoregion[site].Active)
+                    //    continue;
+
+                    //modelCore.Log.WriteLine("ecoregion = {0}.", modelCore.Ecoregion[site]);
+
+                    ActiveSite activeSite = (ActiveSite)site;
+                    initialSnagCommunity = snagCommunities.Find(mapCode);
+                    if (initialCommunity == null)
+                    {
+                        throw new ApplicationException(string.Format("Unknown map code for initial community: {0}", mapCode));
+                    }
+
+                    InitializeSnagSite(activeSite);
                 }
             }
         }

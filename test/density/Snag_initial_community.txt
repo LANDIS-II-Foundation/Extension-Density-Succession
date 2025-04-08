@@ -1,0 +1,6 @@
+LandisData "Snag Communities"
+MapCode	0
+MapCode	1
+Snag1	0	(10)	1	(200)
+MapCode	2
+Snag2	0	(50)	2	(10)

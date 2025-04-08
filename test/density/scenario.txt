@@ -20,7 +20,7 @@ CellLength  100 << meters, so cell area = 900 m2
 >> ----------------------   -------------------
 >>   "Biomass Harvest"			BiomassHarvest-OneCell.txt
 >>	"Land Use Change"		"land-use.txt"  
-	"Base BDA"				base-BDA_SetUp.txt
+>>	"Base BDA"				base-BDA_SetUp.txt
 
 >> Output Extensions        Initialization File
 >> -----------------        -------------------
