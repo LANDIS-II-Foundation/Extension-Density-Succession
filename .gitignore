@@ -218,3 +218,4 @@ FakesAssemblies/
 /src/*.sln
 /test/LargeLandscape
 
+/test/Sierra
