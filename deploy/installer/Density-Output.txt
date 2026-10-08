@@ -7,4 +7,4 @@ Assembly     Landis.Extension.Succession.Density-v2
 
 Class        Landis.Extension.Output.Density.PlugIn
 Description  "This extension will produce outputs of density cohort statistics"
-CoreVersion  7.0
+CoreVersion  8.0

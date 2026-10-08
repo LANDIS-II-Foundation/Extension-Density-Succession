@@ -1,18 +1,17 @@
 ; LANDIS-II Extension infomation
-#define CoreRelease "LANDIS-II-V7"
+#define CoreRelease "LANDIS-II-V8"
 #define ExtensionName "Density-Succession"
-#define AppVersion "2.0"
+#define AppVersion "2.1"
 #define AppPublisher "LANDIS-II Foundation"
 #define AppURL "http://www.landis-ii.org/"
 
 ; Build directory
-#define BuildDir "..\release"
-#define DependDir "..\..\..\Library-Succession\Deploy\release"
+#define BuildDir "..\..\src\bin\Release"
 
 ; LANDIS-II installation directories
-#define ExtDir "C:\Program Files\LANDIS-II-v7\extensions"
-#define AppDir "C:\Program Files\LANDIS-II-v7"
-#define LandisPlugInDir "C:\Program Files\LANDIS-II-v7\plug-ins-installer-files"
+#define ExtDir "C:\Program Files\LANDIS-II-v8\extensions"
+#define AppDir "C:\Program Files\LANDIS-II-v8"
+#define LandisPlugInDir "C:\Program Files\LANDIS-II-v8\plug-ins-installer-files"
 #define ExtensionsCmd AppDir + "\commands\landis-ii-extensions.cmd"
 
 [Setup]
@@ -50,19 +49,16 @@ Source: {#BuildDir}\Landis.Extension.Succession.Density-v2.dll; DestDir: {#ExtDi
 
 ; Requisite auxiliary libraries
 ; NB. These libraries are used by other extensions and thus are never uninstalled.
-Source: {#BuildDir}\Landis.Library.AgeOnlyCohorts-v3.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
-Source: {#BuildDir}\Landis.Library.Cohorts-v2.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
-Source: {#BuildDir}\Landis.Library.BiomassCohorts-v3.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
-Source: {#BuildDir}\Landis.Library.Metadata-v2.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
-Source: {#BuildDir}\Landis.Library.Parameters-v2.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
-Source: {#BuildDir}\Landis.Library.Biomass-v2.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
-Source: {#BuildDir}\Landis.Library.Climate-v4.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
-Source: {#BuildDir}\Landis.Library.Succession-v9.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
-Source: {#BuildDir}\Landis.Library.DensityCohorts-v1.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
-Source: {#DependDir}\Accord.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
-Source: {#DependDir}\Accord.Statistics.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
-Source: {#DependDir}\Accord.Math.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
-Source: {#DependDir}\MathNet.Numerics.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
+Source: {#BuildDir}\Landis.Library.UniversalCohorts-v1.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall ignoreversion  
+Source: {#BuildDir}\Landis.Library.Climate-v5.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall ignoreversion
+Source: {#BuildDir}\Landis.Library.Metadata-v2.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall ignoreversion
+Source: {#BuildDir}\Landis.Library.Parameters-v2.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall ignoreversion   
+Source: {#BuildDir}\Landis.Library.DensityCohorts-v1.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall ignoreversion 
+Source: {#BuildDir}\Landis.Library.Succession-v9.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall ignoreversion
+Source: {#BuildDir}\Accord.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall ignoreversion
+Source: {#BuildDir}\Accord.Math.Core.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall ignoreversion
+Source: {#BuildDir}\Accord.Math.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall ignoreversion
+Source: {#BuildDir}\Accord.Statistics.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall ignoreversion
 
 ; Complete example for testing the extension
 Source: ..\examples\density\*.txt; DestDir: {#AppDir}\examples\{#ExtensionName}; Flags: replacesameversion

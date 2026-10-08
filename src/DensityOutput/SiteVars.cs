@@ -2,7 +2,7 @@
 
 using Landis.Core;
 using Landis.Library.DensityCohorts;
-using Landis.Library.Biomass;
+using Landis.Library.UniversalCohorts;
 using System.Collections.Generic;
 using Landis.SpatialModeling;
 
@@ -15,7 +15,7 @@ namespace Landis.Extension.Output.Density
     {
         //private static ISiteVar<Pool> woodyDebris;
         //private static ISiteVar<Pool> litter;
-        private static ISiteVar<ISiteCohorts> cohorts;
+        private static ISiteVar<Landis.Library.DensityCohorts.SiteCohorts> cohorts;
 
 
         //---------------------------------------------------------------------
@@ -25,7 +25,7 @@ namespace Landis.Extension.Output.Density
         /// </summary>
         public static void Initialize()
         {
-            cohorts = PlugIn.ModelCore.GetSiteVar<ISiteCohorts>("Succession.DensityCohorts");
+            cohorts = PlugIn.ModelCore.GetSiteVar<Landis.Library.DensityCohorts.SiteCohorts>("Succession.DensityCohorts");
 
             if (cohorts == null)
             {
@@ -35,7 +35,7 @@ namespace Landis.Extension.Output.Density
         }
 
         //---------------------------------------------------------------------
-        public static ISiteVar<ISiteCohorts> Cohorts
+        public static ISiteVar<Landis.Library.DensityCohorts.SiteCohorts> Cohorts
         {
             get
             {

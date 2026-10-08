@@ -1,3 +1,3 @@
-call landis-ii-7 scenario.txt
+call landis-ii-8 scenario.txt
  
 pause

@@ -3,15 +3,18 @@
 using Landis.Core;
 using Landis.Utilities;
 using Landis.Library.Succession;
-using Landis.Library.BiomassCohorts;
+using Landis.Library.UniversalCohorts;
 using Landis.Library.DensityCohorts;
 using Landis.SpatialModeling;
-using Landis.Library.Biomass;
 using Landis.Library.Metadata;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Landis.Extension.Succession.Density;
+using Landis.Library.Succession.DemographicSeeding;
+using Landis.Library.Succession.DensitySeeding;
+using Accord.Math;
 
 namespace Landis.Extension.Output.Density
 {
@@ -82,6 +85,7 @@ namespace Landis.Extension.Output.Density
 
         public override void Run()
         {
+
             WriteMapForAllSpecies();
 
             if (makeTable)
@@ -109,7 +113,7 @@ namespace Landis.Extension.Output.Density
                     foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
                     {
                         if (site.IsActive)
-                            pixel.MapCode.Value = ComputeSpeciesTreeNumber(SiteVars.Cohorts[site][species]);
+                            pixel.MapCode.Value = ComputeSpeciesTreeNumber(site, species);
                         else
                             pixel.MapCode.Value = 0;
 
@@ -123,7 +127,7 @@ namespace Landis.Extension.Output.Density
                     foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
                     {
                         if (site.IsActive)
-                            pixel.MapCode.Value = (int)(Math.Round(ComputeSpeciesBasal(SiteVars.Cohorts[site][species]), 2) * 100);
+                            pixel.MapCode.Value = (int)(Math.Round(ComputeSpeciesBasal(site, species), 2) * 100);
                         else
                             pixel.MapCode.Value = 0;
 
@@ -147,7 +151,7 @@ namespace Landis.Extension.Output.Density
                 foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
                 {
                     if (site.IsActive)
-                        pixel.MapCode.Value = ComputeTotalTreeNumber(SiteVars.Cohorts[site]);
+                        pixel.MapCode.Value = ComputeTotalTreeNumber(site);
                     else
                         pixel.MapCode.Value = 0;
 
@@ -161,7 +165,7 @@ namespace Landis.Extension.Output.Density
                 foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
                 {
                     if (site.IsActive)
-                        pixel.MapCode.Value = (int)(Math.Round(ComputeTotalBasal(SiteVars.Cohorts[site]), 2) * 100);
+                        pixel.MapCode.Value = (int)(Math.Round(ComputeTotalBasal(site), 2) * 100);
                     else
                         pixel.MapCode.Value = 0;
 
@@ -225,8 +229,8 @@ namespace Landis.Extension.Output.Density
 
                 foreach (ISpecies species in ModelCore.Species)
                 {
-                    allSppEcos[ecoregion.Index, species.Index, 0] += ComputeSpeciesTreeNumber(SiteVars.Cohorts[site][species]);
-                    allSppEcos[ecoregion.Index, species.Index, 1] += ComputeSpeciesBasal(SiteVars.Cohorts[site][species]);
+                    allSppEcos[ecoregion.Index, species.Index, 0] += ComputeSpeciesTreeNumber(site, species);
+                    allSppEcos[ecoregion.Index, species.Index, 1] += ComputeSpeciesBasal(site, species);
                 }
 
                 activeSiteCount[ecoregion.Index]++;
@@ -254,50 +258,70 @@ namespace Landis.Extension.Output.Density
             }
         }
         //---------------------------------------------------------------------
-        private static double ComputeSpeciesBasal(Landis.Library.DensityCohorts.ISpeciesCohorts cohorts)
+        private static double ComputeSpeciesBasal(Landis.SpatialModeling.Site site, Landis.Core.ISpecies species)
         {
-            double local_const = 3.1415926 / (4 * 10000.00);
             double total = 0;
-            if (cohorts != null)
-                total = cohorts.Sum(x => Math.Pow(x.Diameter, 2) * local_const * x.Treenumber);
+            if (SiteVars.Cohorts != null)
+            {
+                ISiteVar<Landis.Library.Parameters.Species.AuxParm<double>> Basal_spc = SiteVars.Cohorts.GetIsiteVar(o => o.BasalPerSpecies);
+
+                total = Basal_spc[site][species];
+            }
             return total;
         }
 
         //---------------------------------------------------------------------
 
-        private static int ComputeSpeciesTreeNumber(Landis.Library.DensityCohorts.ISpeciesCohorts cohorts)
+        private static int ComputeSpeciesTreeNumber(Landis.SpatialModeling.Site site, Landis.Core.ISpecies species)
         {
             int total = 0;
-            if (cohorts != null)
-                total = cohorts.Sum(x => x.Treenumber);
+            if (SiteVars.Cohorts != null)
+            {
+                ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> TreeNumbers = SiteVars.Cohorts.GetIsiteVar(o => o.TreeNumberPerSpecies);
+
+                total = TreeNumbers[site][species];
+            }
             return total;
         }
 
         //---------------------------------------------------------------------
 
-        private static int ComputeTotalTreeNumber(Landis.Library.DensityCohorts.ISiteCohorts cohorts)
+        private static int ComputeTotalTreeNumber(Landis.SpatialModeling.Site site)
         {
             int total = 0;
-            if (cohorts != null)
-                foreach (Landis.Library.DensityCohorts.ISpeciesCohorts speciesCohorts in cohorts)
+            if (SiteVars.Cohorts != null)
+            {
+                ISiteVar<Landis.Library.Parameters.Species.AuxParm<int>> TreeNumbers = SiteVars.Cohorts.GetIsiteVar(o => o.TreeNumberPerSpecies);
+
+                foreach (ISpecies species in modelCore.Species)
                 {
-                    total += ComputeSpeciesTreeNumber(speciesCohorts);
+                    total += TreeNumbers[site][species];
                 }
+            }
             return total;
         }
         
         //---------------------------------------------------------------------
 
-        private static double ComputeTotalBasal(Landis.Library.DensityCohorts.ISiteCohorts cohorts)
+        private static double ComputeTotalBasal(Landis.SpatialModeling.Site site)
         {
             double total = 0;
-            if (cohorts != null)
-                foreach (Landis.Library.DensityCohorts.ISpeciesCohorts speciesCohorts in cohorts)
+
+            if (SiteVars.Cohorts != null)
+            {
+                ISiteVar<Landis.Library.Parameters.Species.AuxParm<double>> Basal = SiteVars.Cohorts.GetIsiteVar(o => o.BasalPerSpecies);
+
+                foreach (ISpecies species in modelCore.Species)
                 {
-                    total += ComputeSpeciesBasal(speciesCohorts);
+                    total += Basal[site][species];
                 }
+            }
             return total;
         }
 
+        public override void AddCohortData()
+        {
+            // add cohort data here
+        }
     }
 }

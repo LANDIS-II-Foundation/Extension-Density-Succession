@@ -219,3 +219,12 @@ FakesAssemblies/
 /test/LargeLandscape
 
 /test/Sierra
+src/lib/Landis.Library.DensityCohorts-v1.deps.json
+deploy/examples/v8 example/spp-density-log.csv
+deploy/examples/v8 example/spp-biomass-log.csv
+deploy/examples/density/Landis-log.txt
+deploy/examples/density/Landis-log.txt
+/deploy/examples/v8 example/Metadata
+/deploy/examples/v8 example/outputs
+deploy/examples/v8 example/Landis-log.txt
+deploy/examples/v8 example/Landis-log.txt
